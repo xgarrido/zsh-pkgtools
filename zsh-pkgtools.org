@@ -140,14 +140,14 @@ These functions must be used with interactive function for debug purpose as well
 as getting well prefixed message using the function name.
 
 #+BEGIN_SRC sh
-  function __pkgtools::at_function_enter ()
+  function pkgtools::at_function_enter ()
   {
       pkgtools::set_funcname $1
       pkgtools::msg_devel "Entering..."
       return 0
   }
 
-  function __pkgtools::at_function_exit ()
+  function pkgtools::at_function_exit ()
   {
       pkgtools::msg_devel "Exiting."
       pkgtools::unset_funcname
