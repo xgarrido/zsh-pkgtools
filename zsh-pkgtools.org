@@ -11,7 +11,7 @@ can be found at [[https://nemo.lpc-caen.in2p3.fr/wiki/pkgtools][LPC Wiki website
 
 ** Default values
 #+BEGIN_SRC sh
-  function __pkgtools::default_values ()
+  function pkgtools::default_values ()
   {
       __pkgtools__msg_use_color=1
       __pkgtools__msg_use_date=0
@@ -30,7 +30,7 @@ can be found at [[https://nemo.lpc-caen.in2p3.fr/wiki/pkgtools][LPC Wiki website
       __pkgtools__stored_pwd=
       return 0
   }
-  __pkgtools::default_values
+  pkgtools::default_values
 #+END_SRC
 
 ** User Interface utilities
