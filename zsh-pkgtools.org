@@ -824,13 +824,19 @@ variable.
 #+END_SRC
 *** Check if laptop is @ LAL
 #+BEGIN_SRC sh
-  function pkgtools::at_LAL ()
+  function pkgtools::at_lal ()
   {
       ping -c 1 nemo4 > /dev/null 2>&1
       return $?
   }
 #+END_SRC
-
+*** Check if session runs at CC
+#+BEGIN_SRC sh
+  function pkgtools::at_cc ()
+  {
+      [[ $(hostname) == cc* ]] && return 0 || return 1
+  }
+#+END_SRC
 *** Get system environment
 #+BEGIN_SRC sh
   function pkgtools::get_os ()
