@@ -837,6 +837,14 @@ variable.
       [[ $(hostname) == cc* ]] && return 0 || return 1
   }
 #+END_SRC
+*** Check if session runs inside a docker container
+#+BEGIN_SRC sh
+  function pkgtools::in_docker ()
+  {
+      awk -F/ '$2 == "docker"' /proc/self/cgroup | read
+      return $?
+  }
+#+END_SRC
 *** Get system environment
 #+BEGIN_SRC sh
   function pkgtools::get_os ()
