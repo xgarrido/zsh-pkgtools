@@ -28,6 +28,8 @@ can be found at [[https://nemo.lpc-caen.in2p3.fr/wiki/pkgtools][LPC Wiki website
       __pkgtools__arch=$(uname -m | sed 's/ //g')
       __pkgtools__answer_is_yes=false
       __pkgtools__stored_pwd=
+      __pkgtools__subshell_error_file=/tmp/pkgtools.d/subshell.error
+      mkdir -p $(basename ${__pkgtools__subshell_error_file})
       return 0
   }
   pkgtools::default_values
@@ -791,11 +793,22 @@ variable.
       return $?
   }
 #+END_SRC
+*** Store error from subshell
+#+BEGIN_SRC sh
+  function pkgtools::error_in_subshell ()
+  {
+      touch ${__pkgtools__subshell_error_file}
+  }
+#+END_SRC
 *** Check last command status
 #+BEGIN_SRC sh
   function pkgtools::last_command_succeeds ()
   {
-      if [ $? -ne 0 ]; then
+      local ret=$?
+      if [ -f ${__pkgtools__subshell_error_file} ]; then
+        rm ${__pkgtools__subshell_error_file}
+        return 1
+      elif [ ${ret} -ne 0 ]; then
           return 1
       else
           return 0
@@ -803,7 +816,11 @@ variable.
   }
   function pkgtools::last_command_fails ()
   {
-      if [ $? -ne 0 ]; then
+      local ret=$?
+      if [ -f ${__pkgtools__subshell_error_file} ]; then
+        rm ${__pkgtools__subshell_error_file}
+        return 0
+      elif [ ${ret} -ne 0 ]; then
           return 0
       else
           return 1
