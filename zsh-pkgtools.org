@@ -30,6 +30,7 @@ can be found at [[https://nemo.lpc-caen.in2p3.fr/wiki/pkgtools][LPC Wiki website
       __pkgtools__stored_pwd=
       __pkgtools__subshell_error_file=/tmp/pkgtools.d/subshell.error
       mkdir -p $(basename ${__pkgtools__subshell_error_file})
+      rm -f ${__pkgtools__subshell_error_file}
       return 0
   }
   pkgtools::default_values
@@ -280,7 +281,7 @@ one is itemized to make navigation easier
 #+END_SRC
 *** Cancel color
 #+BEGIN_SRC sh
-  function pkgtools::msg_color__cancel ()
+  function pkgtools::msg_color_cancel ()
   {
       if [ ${__pkgtools__msg_use_color} = 1 ]; then
           echo -en "\\033[1;m" 1>&2
