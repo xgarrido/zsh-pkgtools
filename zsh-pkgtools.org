@@ -29,7 +29,7 @@ can be found at [[https://nemo.lpc-caen.in2p3.fr/wiki/pkgtools][LPC Wiki website
       __pkgtools__answer_is_yes=false
       __pkgtools__stored_pwd=
       __pkgtools__subshell_error_file=/tmp/pkgtools.d/subshell.error
-      mkdir -p $(basename ${__pkgtools__subshell_error_file})
+      mkdir -p $(dirname ${__pkgtools__subshell_error_file})
       rm -f ${__pkgtools__subshell_error_file}
       return 0
   }
