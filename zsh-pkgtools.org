@@ -466,7 +466,7 @@ Use to print message requiring different level of attention.
 
   function pkgtools::msg_debug ()
   {
-      if [ ${__pkgtools__msg_debug} -eq 0 ]; then
+      if [[ ${__pkgtools__msg_debug} -eq 0 && "x${PKGTOOLS_MSG_DEBUG}" != "x1" ]]; then
           return 0
       fi
       ok=1
